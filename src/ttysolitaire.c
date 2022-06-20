@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
       {"version", no_argument, NULL, 'v'},
       {"passes", required_argument, NULL, 'p'},
       {"four-color-deck", no_argument, &four_color_deck, 1},
-      {"no-background-color", no_argument, &no_background_color, 1},
+      {"b", no_argument, &no_background_color, 1},
       {0, 0, 0, 0}};
 
   program_name = basename(argv[0]);
@@ -66,6 +66,8 @@ int main(int argc, char *argv[]) {
   noecho();
   keypad(stdscr, TRUE);
   start_color();
+  init_color(COLOR_GREEN,150, 200, 250);
+  init_color(COLOR_YELLOW,190,255,255);
   curs_set(FALSE);
   set_escdelay(0);
   if (no_background_color) {
@@ -73,11 +75,11 @@ int main(int argc, char *argv[]) {
   } else {
     assume_default_colors(COLOR_WHITE, COLOR_GREEN);
   }
-  init_pair(1, COLOR_BLACK, COLOR_WHITE);
-  init_pair(2, COLOR_RED, COLOR_WHITE);
+  init_pair(1, COLOR_WHITE, COLOR_YELLOW);
+  init_pair(2, COLOR_RED, COLOR_YELLOW);
   init_pair(3, COLOR_GREEN, COLOR_WHITE);
   init_pair(4, COLOR_YELLOW, COLOR_WHITE);
-  init_pair(5, COLOR_WHITE, COLOR_BLUE);
+  init_pair(5, COLOR_WHITE, COLOR_GREEN);
   init_pair(6, COLOR_WHITE, COLOR_GREEN);
 
   int key;
@@ -146,7 +148,7 @@ void usage(const char *program_name) {
          "(default: 3)\n");
   printf("      --four-color-deck      Draw unique card suit colors       "
          "(default: false)\n");
-  printf("      --no-background-color  Don't draw background color        "
+  printf("      --b  Bland backgroun color        "
          "(default: false)\n");
 }
 
