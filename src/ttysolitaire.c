@@ -95,30 +95,31 @@ int main(int argc, char *argv[]) {
   }
 
   clear();
-  draw_greeting();
+  //draw_greeting();
   refresh();
+  game_init(&game, passes_through_deck, four_color_deck);
 
-  for (;;) {
-    if ((key = getch()) == 'q' || key == 'Q') {
-      endwin();
-      return (0);
-    }
-    if (term_size_ok()) {
-      clear();
-      draw_greeting();
-      refresh();
-      if (key == KEY_SPACEBAR) {
-        clear();
-        refresh();
-        game_init(&game, passes_through_deck, four_color_deck);
-        break;
-      }
-    } else if (key == KEY_RESIZE) {
-      clear();
-      mvprintw(1, 1, SMALL_TERM_MSG);
-      refresh();
-    }
-  }
+ // for (;;) {
+ //   if ((key = getch()) == 'q' || key == 'Q') {
+ //     endwin();
+ //     return (0);
+ //   }
+ //   if (term_size_ok()) {
+ //     clear();
+ //     draw_greeting();
+ //     refresh();
+ //     if (key == KEY_SPACEBAR) {
+ //       clear();
+ //       refresh();
+ //       game_init(&game, passes_through_deck, four_color_deck);
+ //       break;
+ //     }
+ //   } else if (key == KEY_RESIZE) {
+ //     clear();
+ //     mvprintw(1, 1, SMALL_TERM_MSG);
+ //     refresh();
+ //   }
+ // }
 
   do {
     keyboard_event(getch());
@@ -148,7 +149,7 @@ void usage(const char *program_name) {
          "(default: 3)\n");
   printf("      --four-color-deck      Draw unique card suit colors       "
          "(default: false)\n");
-  printf("      --b  Bland backgroun color        "
+  printf("      --no-background-color  Don't draw background color        "
          "(default: false)\n");
 }
 
