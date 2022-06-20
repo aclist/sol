@@ -9,13 +9,13 @@
 #include "gui.h"
 
 static const char *card_suits[4] = {"\u2666", "\u2660", "\u2665", "\u2663"};
-static const char *card_values[13] = {"A", "2", "3",  "4", "5", "6", "7",
-                                      "8", "9", "10", "J", "Q", "K"};
+static const char *card_values[13] = {"  A ", "  2 ", "  3 ",  "  4 ", "  5 ", "  6 ", "  7 ",
+                                      "  8 ", "  9 ", "  10 ", "  J ", "  Q ", "  K "};
 
 static void draw_value(struct card *card) {
   mvwprintw(card->frame->window, 0, 0, "%s", card_values[card->value]);
-  mvwprintw(card->frame->window, 4, 7 - strlen(card_values[card->value]),
-            "%s", card_values[card->value]);
+//  mvwprintw(card->frame->window, 4, 7 - strlen(card_values[card->value]),
+ //           "%s", card_values[card->value]);
 }
 
 static void draw_suit(struct card *card) {
@@ -44,8 +44,8 @@ static void draw_suit(struct card *card) {
   }
   mvwprintw(card->frame->window, 0, strlen(card_values[card->value]),
             "%s", card_suits[card->suit]);
-  mvwprintw(card->frame->window, 4, 6 - strlen(card_values[card->value]),
-            "%s", card_suits[card->suit]);
+//  mvwprintw(card->frame->window, 4, 6 - strlen(card_values[card->value]),
+//            "%s", card_suits[card->suit]);
   if (card->suit % 2 == 0) {
     wattroff(card->frame->window, COLOR_PAIR(RED_ON_WHITE));
   } else {
